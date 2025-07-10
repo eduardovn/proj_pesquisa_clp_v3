@@ -1,0 +1,666 @@
+[
+    {
+        "id": "7eb72364ce2fd635",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d33d5498ebefdc9e",
+        "type": "mqtt in",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "topic": "dados",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "e0e4350de4dafb43",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 280,
+        "wires": [
+            [
+                "dced75924025a47a"
+            ]
+        ]
+    },
+    {
+        "id": "e9afdf398b25cff9",
+        "type": "aedes broker",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "persistence_bind": "memory",
+        "dburl": "",
+        "usetls": false,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "dced75924025a47a",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "separarDados",
+        "func": "// Últimos valores recebidos (armazenados no contexto)\nlet lastValues = context.get('lastValues') || [null, null, null, null];\nlet newValues = msg.payload;\n\n// Array para armazenar mensagens a serem enviadas\nlet messages = [];\n\n// Verifica cada índice para mudanças\nfor (let i = 0; i < newValues.length; i++) {\n    if (newValues[i] !== lastValues[i]) {\n        context.set('lastValues', newValues);\n        let qtd = newValues[i];\n        msg.payload = {\n            indice: i,\n            quantidade: qtd\n        };\n        return msg;\n    }\n}\n\n// Atualiza o contexto com os novos valores\ncontext.set('lastValues', newValues);\n\n// Retorna todas as mensagens, se houverem mudanças\nif (messages.length > 0) {\n    return [messages];\n}\n\n// Retorna null se não houver alterações\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "acbd5b39215d4328",
+                "148f342411326a25",
+                "01a8b4a6d899132b",
+                "d0f5605880ebaa43"
+            ]
+        ]
+    },
+    {
+        "id": "acbd5b39215d4328",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "p_met_gra",
+        "func": "\nlet lastPayload = context.get('lastPayload') || 0;\n\n\nlet indice = msg.payload.indice;\n\nif (indice === 0){\n    // Captura o novo valor do payload\n    let currentPayload = msg.payload.quantidade;\n\n    // Compara o valor atual com o anterior\n    if (lastPayload !== currentPayload) {\n        context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n        msg.payload = {\n            valor: currentPayload, // O valor atualizado do payload\n            descricao1: \"Metálica Grande\", // Primeiro texto adicional\n            descricao2: \"separação tipo 3\" // Segundo texto adicional\n        };\n        return msg; // Retorna a mensagem se o valor for diferente\n    }\n}\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "bd6a0e521ac2a701",
+                "df1c84a1a00982e0"
+            ]
+        ]
+    },
+    {
+        "id": "bd6a0e521ac2a701",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "8e516c66c83dccdb"
+            ]
+        ]
+    },
+    {
+        "id": "8e516c66c83dccdb",
+        "type": "moment",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 80,
+        "wires": [
+            [
+                "5d0c61b6e4faa344"
+            ]
+        ]
+    },
+    {
+        "id": "5d0c61b6e4faa344",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 80,
+        "wires": [
+            [
+                "df1c84a1a00982e0"
+            ]
+        ]
+    },
+    {
+        "id": "df1c84a1a00982e0",
+        "type": "join",
+        "z": "7eb72364ce2fd635",
+        "name": "comb_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 830,
+        "y": 140,
+        "wires": [
+            [
+                "4bca2eb1bc1fc53e"
+            ]
+        ]
+    },
+    {
+        "id": "4bca2eb1bc1fc53e",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "insert_peca_g",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.dados && msg.payload.dados.valor && msg.payload.dados.descricao1 && msg.payload.dados.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.dados.valor;             // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;       // A data extraída\n    let tipo = msg.payload.dados.descricao1;               // O tipo da peça\n    let descricao = msg.payload.dados.descricao2;          // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;           // O tempo de ciclo\n    let peca3_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_3 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca3_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca3_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 140,
+        "wires": [
+            [
+                "db0cd070b94d51da"
+            ]
+        ]
+    },
+    {
+        "id": "db0cd070b94d51da",
+        "type": "mysql",
+        "z": "7eb72364ce2fd635",
+        "mydb": "944d93f5008df393",
+        "name": "banco_projeto",
+        "x": 1260,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "148f342411326a25",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "p_met_med",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\nlet indice = msg.payload.indice;\n\nif (indice === 1) {\n    // Captura o novo valor do payload\n    let currentPayload = msg.payload.quantidade;\n\n    // Compara o valor atual com o anterior\n    if (lastPayload !== currentPayload) {\n        context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n        msg.payload = {\n            valor: currentPayload, // O valor atualizado do payload\n            descricao1: \"Metálica Media\", // Primeiro texto adicional\n            descricao2: \"separação tipo 2\" // Segundo texto adicional\n        };\n        return msg; // Retorna a mensagem se o valor for diferente\n    }\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "01d28ba9bf540180",
+                "e32dcb1a064056c9"
+            ]
+        ]
+    },
+    {
+        "id": "01d28ba9bf540180",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 200,
+        "wires": [
+            [
+                "eda1290ab90a79eb"
+            ]
+        ]
+    },
+    {
+        "id": "eda1290ab90a79eb",
+        "type": "moment",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "e52d98d5c65c0f28"
+            ]
+        ]
+    },
+    {
+        "id": "e52d98d5c65c0f28",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 200,
+        "wires": [
+            [
+                "e32dcb1a064056c9"
+            ]
+        ]
+    },
+    {
+        "id": "e32dcb1a064056c9",
+        "type": "join",
+        "z": "7eb72364ce2fd635",
+        "name": "comb_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 830,
+        "y": 260,
+        "wires": [
+            [
+                "c940cb91c296c8af"
+            ]
+        ]
+    },
+    {
+        "id": "c940cb91c296c8af",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "insert_peca_m",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.dados && msg.payload.dados.valor && msg.payload.dados.descricao1 && msg.payload.dados.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.dados.valor;             // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;       // A data extraída\n    let tipo = msg.payload.dados.descricao1;               // O tipo da peça\n    let descricao = msg.payload.dados.descricao2;          // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;           // O tempo de ciclo\n    let peca2_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_2 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca2_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca2_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 240,
+        "wires": [
+            [
+                "db0cd070b94d51da"
+            ]
+        ]
+    },
+    {
+        "id": "01a8b4a6d899132b",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "p_met_peq",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\nlet indice = msg.payload.indice;\n\nif (indice === 2) {\n    // Captura o novo valor do payload\n    let currentPayload = msg.payload.quantidade;\n\n    // Compara o valor atual com o anterior\n    if (lastPayload !== currentPayload) {\n        context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n        msg.payload = {\n            valor: currentPayload, // O valor atualizado do payload\n            descricao1: \"Metálica Pequena\", // Primeiro texto adicional\n            descricao2: \"separação tipo 1\" // Segundo texto adicional\n        };\n        return msg; // Retorna a mensagem se o valor for diferente\n    }\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "bfc5498b8bd8d92e",
+                "b06c1fe8f291eccf"
+            ]
+        ]
+    },
+    {
+        "id": "bfc5498b8bd8d92e",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "0226d7a60e80e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "0226d7a60e80e6e8",
+        "type": "moment",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "b24849d8fd715192"
+            ]
+        ]
+    },
+    {
+        "id": "b24849d8fd715192",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 360,
+        "wires": [
+            [
+                "b06c1fe8f291eccf"
+            ]
+        ]
+    },
+    {
+        "id": "b06c1fe8f291eccf",
+        "type": "join",
+        "z": "7eb72364ce2fd635",
+        "name": "comb_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 830,
+        "y": 300,
+        "wires": [
+            [
+                "8e82797e5f89600f"
+            ]
+        ]
+    },
+    {
+        "id": "8e82797e5f89600f",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "insert_peca_p",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.dados && msg.payload.dados.valor && msg.payload.dados.descricao1 && msg.payload.dados.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.dados.valor;             // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;       // A data extraída\n    let tipo = msg.payload.dados.descricao1;               // O tipo da peça\n    let descricao = msg.payload.dados.descricao2;          // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;           // O tempo de ciclo\n    let peca1_status = 1;                                  // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_metalica_1 (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca1_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca1_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 300,
+        "wires": [
+            [
+                "db0cd070b94d51da"
+            ]
+        ]
+    },
+    {
+        "id": "d0f5605880ebaa43",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "p_nao_met",
+        "func": "let lastPayload = context.get('lastPayload') || 0;\n\nlet indice = msg.payload.indice;\n\nif (indice === 3) {\n    // Captura o novo valor do payload\n    let currentPayload = msg.payload.quantidade;\n\n    // Compara o valor atual com o anterior\n    if (lastPayload !== currentPayload) {\n        context.set('lastPayload', currentPayload); // Atualiza o valor armazenado\n        msg.payload = {\n            valor: currentPayload, // O valor atualizado do payload\n            descricao1: \"Não Metálica\", // Primeiro texto adicional\n            descricao2: \"Direcionada para outro fluxo\" // Segundo texto adicional\n        };\n        return msg; // Retorna a mensagem se o valor for diferente\n    }\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 420,
+        "wires": [
+            [
+                "81e4ca3fb37b5a87",
+                "9b045ee6cb7999d0"
+            ]
+        ]
+    },
+    {
+        "id": "81e4ca3fb37b5a87",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "sendDateTime",
+        "func": "msg.payload = Date.now();\n    return msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "5ad467757d9985ba"
+            ]
+        ]
+    },
+    {
+        "id": "5ad467757d9985ba",
+        "type": "moment",
+        "z": "7eb72364ce2fd635",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Sao_Paulo",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pt-BR",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "America/Sao_Paulo",
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "031f844effd8ad20"
+            ]
+        ]
+    },
+    {
+        "id": "031f844effd8ad20",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "dateTime",
+        "func": "msg.topic = \"dateTime\";\n// Converte o objeto msg em uma string JSON\nlet data = JSON.stringify(msg);\n\n// Extrai a data e o horário no formato ISO 8601\nlet match = data.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}/);\n\nif (match) {\n    // Divide a string da data e horário em partes separadas\n    let [date, time] = match[0].split('T');\n\n    // Define a data e o horário no payload\n    msg.payload = {\n        date: date,  \n        time: time   \n    };\n\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 480,
+        "wires": [
+            [
+                "9b045ee6cb7999d0"
+            ]
+        ]
+    },
+    {
+        "id": "9b045ee6cb7999d0",
+        "type": "join",
+        "z": "7eb72364ce2fd635",
+        "name": "comb_conteudos",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 830,
+        "y": 420,
+        "wires": [
+            [
+                "60418f494392d6dc"
+            ]
+        ]
+    },
+    {
+        "id": "60418f494392d6dc",
+        "type": "function",
+        "z": "7eb72364ce2fd635",
+        "name": "insert_peca_n_met",
+        "func": "// Verifica se todos os dados necessários estão presentes\nif (msg.payload.dados && msg.payload.dados.valor && msg.payload.dados.descricao1 && msg.payload.dados.descricao2 && msg.payload.dateTime && msg.payload.dateTime.date && msg.payload.dateTime.time) {\n    // Define os valores extraídos do payload\n    let id_contagem = msg.payload.dados.valor;             // O valor do contador\n    let data_fabricacao = msg.payload.dateTime.date;       // A data extraída\n    let tipo = msg.payload.dados.descricao1;               // O tipo da peça\n    let descricao = msg.payload.dados.descricao2;          // A descrição da peça\n    let tempo_ciclo = msg.payload.dateTime.time;           // O tempo de ciclo\n    let peca_status = 1;                                   // O status inicial \n\n    // Monta o comando INSERT com os dados extraídos\n    let insertQuery = `INSERT INTO peca_nao_metalica (id_contagem, data_fabricacao, tipo, descricao, tempo_ciclo, peca_status) \nVALUES (${id_contagem}, '${data_fabricacao}', '${tipo}', '${descricao}', '${tempo_ciclo}', '${peca_status}');`;\n\n    // Retorna o comando SQL no payload\n    msg.topic = insertQuery;\n    return msg;\n} else {\n    // Caso falte algum dado, retorna um erro ou null\n    node.error(\"Dados incompletos no payload.\", msg);\n    return null; // Caso não tenha dados suficientes\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 420,
+        "wires": [
+            [
+                "db0cd070b94d51da"
+            ]
+        ]
+    },
+    {
+        "id": "e0e4350de4dafb43",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.43.202",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "944d93f5008df393",
+        "type": "MySQLdatabase",
+        "name": "Banco_Projeto",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "banco_proj",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
