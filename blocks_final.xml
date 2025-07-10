@@ -1,0 +1,2022 @@
+<xml xmlns="https://bipes.net.br">
+  <workspace>
+    <field name="DEVICE">ESP32</field>
+    <field name="TIMESTAMP">1752094475835</field>
+    <freeboard><![CDATA[{"version":1,"allow_edit":true,"plugins":[],"panes":[],"datasources":[],"columns":3}]]></freeboard>
+    <databoard><![CDATA[{"currentWorkspace":"kvflqzky5js84d7x5pe","workspace:kvflqzky5js84d7x5pe":[]}]]></databoard> 
+  </workspace>
+  <variables>
+    <variable id="zMwf?;$u/_?^7$obEm/h">uart</variable>
+    <variable id="ICIe+{:[uQtPDUM|p,[U">result</variable>
+    <variable id="#mScNjGm8.WoM@jgrGUm">registers</variable>
+    <variable id="nt?!{FhaO5@RSXW+5z}u">mqtt_client</variable>
+    <variable id="{D5sxAFX}/Ie9Y%h]cUf">start_address_high</variable>
+    <variable id="UQHasl*9mU%VFXrG)gNW">bytearray</variable>
+    <variable id="-[LgmryGUBT0y8oMmuN(">crc</variable>
+    <variable id="PF,._m@rmtZhp09v.y3d">quotient</variable>
+    <variable id="T);cQ3/]KM%s)r9OAPzs">bit</variable>
+    <variable id="2(ndr7$q(#5`1YN8Z/(g">data</variable>
+    <variable id=",i3#b;#PSP0[1!dl6,)F">start_address_low</variable>
+    <variable id="MC|9X35XcUn%rl}g##Ie">i</variable>
+    <variable id=",pO(SkB*hgBfK4--5@Ye">counter</variable>
+    <variable id="CfN1WMEr7OTA8i=sDz0N">k</variable>
+    <variable id="37d5``eSK-`CIEr9.=SC">register_count_high</variable>
+    <variable id="0;GE(yBck)z]x8YC=N3=">size</variable>
+    <variable id="G*l:74-K`/qs[@VG!s=!">a</variable>
+    <variable id="9_/kLA/by^z]yA8#FdO{">slave_address</variable>
+    <variable id="Pr{aJZSa*S1dK4=68j.Z">response</variable>
+    <variable id="vy6sMNvjB.k]484`4Cj+">limite</variable>
+    <variable id="!4:A`%5V?@#Iees2H.Fi">start_address</variable>
+    <variable id="icMiJ,^ly+8z=mkNHj?,">register_count_low</variable>
+    <variable id="%],Unmqf7X[oC_RLb;Z?">b</variable>
+    <variable id="*~j$ECGVxoln?v-)4K#;">function_code</variable>
+    <variable id="d7]azS2Z-m6T]=ZmGAh5">abit</variable>
+    <variable id="e4[T3rka`.#5Q@,fpd.U">request</variable>
+    <variable id="Wb*uPLa5r(.M~Vh-8T?F">byte</variable>
+    <variable id="8EG(abHc}vyVMDiv7@_`">bbit</variable>
+    <variable id="QAE@rbS??|:~Qe`b%VM3">register_count</variable>
+    <variable id="SyXMg}R`W)@$bLsX+|:6">low_byte</variable>
+    <variable id="5A]TS4@^kbSxy=eg1v83">j</variable>
+    <variable id="ounM%5dS*nBXmD6SA,f?">high_byte</variable>
+    <variable id="4,f{67M+MMxYvz*tG4dE">lsb</variable>
+    <variable id="wkRf2st$PtTAZ!51eQW?">received_crc</variable>
+    <variable id=".bGPJ07gJ@Wpm7AL09}U">calculated_crc</variable>
+    <variable id="FBSUy$;i9J{{V+(8u:a]">byte_count</variable>
+    <variable id="2([M0EIp*%c~v:OMf[Ni">crc_low</variable>
+    <variable id="/8Q.tS9Aci~;Avi,-?D2">crc_high</variable>
+    <variable id="}-cgXuD|Do5n;bt(r=o2">dados</variable>
+    <variable id="FpAyw.@yJ^~O@{T)M1sq">fim</variable>
+    <variable id="vwp|^w;RV4a-j+[sUmM7">high</variable>
+    <variable id="K{@{4:$3r|nY+5X1!/xt">low</variable>
+    <variable id="g}Ps-Hv;4PiA:w=+c3eo">value</variable>
+  </variables>
+  <block type="procedures_defnoreturn" id="b%W(Le8%g]U_-VgL^iCF" x="-2788" y="-1937">
+    <field name="NAME">main</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="Ee$T~I:%nV6*DEwI8|h]">
+        <field name="VAR" id="zMwf?;$u/_?^7$obEm/h">uart</field>
+        <value name="VALUE">
+          <block type="procedures_callreturn" id="{Vf)@Pn4[USFA@*hz!|4">
+            <mutation name="setup_uart"></mutation>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="|SG@*jqILy(0WP5bPwiR">
+            <mutation name="setup_wifi"></mutation>
+            <next>
+              <block type="variables_set" id="KY]=@4tRn+a|byz,w9[2">
+                <field name="VAR" id="nt?!{FhaO5@RSXW+5z}u">mqtt_client</field>
+                <value name="VALUE">
+                  <block type="procedures_callreturn" id="x2/x@q5o*mR:^ag[IR+P">
+                    <mutation name="setup_mqtt"></mutation>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="AiHs`Zf|q%Ba2U0UHkP]">
+                    <field name="VAR" id="9_/kLA/by^z]yA8#FdO{">slave_address</field>
+                    <value name="VALUE">
+                      <block type="math_number" id=":/+rHo!jV0K`DB_YuwOI">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="0SwfZ63dUKO:uyMwHT]h">
+                        <field name="VAR" id="*~j$ECGVxoln?v-)4K#;">function_code</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="bSu=P9R4ebW_+[*i8[ey">
+                            <field name="NUM">3</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id=".d^.WxFduP42_9DV-xZm">
+                            <field name="VAR" id="!4:A`%5V?@#Iees2H.Fi">start_address</field>
+                            <value name="VALUE">
+                              <block type="math_number" id="Q:Mh:F2L@$S$F:}o5e$h">
+                                <field name="NUM">17208</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="bCOX$((PuWcDk0Kd;VMI">
+                                <field name="VAR" id="QAE@rbS??|:~Qe`b%VM3">register_count</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="v#+z}E*DS^Y!AaB|Kyz7">
+                                    <field name="NUM">4</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="1%tBrlRDp5|ps[$ze$^-">
+                                    <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                    <value name="VALUE">
+                                      <block type="procedures_callreturn" id="gtDgioy|oh.qH`#*C]5g">
+                                        <mutation name="create_modbus_request"></mutation>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="controls_whileUntil" id="ANRNYrB75U?[k-V|FCn9">
+                                        <field name="MODE">WHILE</field>
+                                        <value name="BOOL">
+                                          <block type="logic_boolean" id="iGNl)kx#;z3(w6Sp9wE-">
+                                            <field name="BOOL">TRUE</field>
+                                          </block>
+                                        </value>
+                                        <statement name="DO">
+                                          <block type="machine.UART_UART.write" id="`])bbB(*=P4K/M~B-DN0">
+                                            <value name="pIn">
+                                              <block type="variables_get" id="V[}SAg~.f#!h1hwsdkZY">
+                                                <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="delay" id="ZVr!iK#Z9J9iuMii@Ny2">
+                                                <field name="SCALE">sleep</field>
+                                                <value name="TIME">
+                                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="k(`AnG8mk{9.4`xQGG!{">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                  <block type="math_number" id="P:cD@]xe@OL!Z$oh2@Kz">
+                                                    <field name="NUM">1</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="TQUlkZy!l-s.pCqd`^oK">
+                                                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                                    <value name="VALUE">
+                                                      <block type="uart_read" id="A6.e)o@:g,`KPUsF}]Lc">
+                                                        <value name="s">
+                                                          <block type="math_number" id="HzF-$sQ@;U.b}zjMKKvL">
+                                                            <field name="NUM">16</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set" id="O.Wg2*pl9j:M6N/iqsEd">
+                                                        <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                        <value name="VALUE">
+                                                          <block type="procedures_callreturn" id="_YRU|FX%^lo-?]]9rn[c">
+                                                            <mutation name="process_response"></mutation>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="controls_if" id="6mvPqm_XItNcE$qF1WTG">
+                                                            <value name="IF0">
+                                                              <block type="logic_compare" id="@-xL4i:.8*VMDr%(S[,6">
+                                                                <field name="OP">NEQ</field>
+                                                                <value name="A">
+                                                                  <block type="variables_get" id="Fo8%Ed%kz-7$}jPhb;~5">
+                                                                    <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="B">
+                                                                  <block type="logic_null" id="Xv$LaPuM=b}gYuDm.S)N"></block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <statement name="DO0">
+                                                              <block type="mqtt_publish_payload" id="w;Dw9EHwLf/N:Sq[%=,0">
+                                                                <field name="BLOCK_MQTT_PUBLISH">Publish Payload to MQTT Topic</field>
+                                                                <field name="MQTT_TOPIC">Topic</field>
+                                                                <field name="MQTT_PAYLOAD">Payload</field>
+                                                                <field name="MQTT_QOS">1</field>
+                                                                <value name="topic">
+                                                                  <shadow xmlns="https://bipes.net.br" type="text" id="S!wL2|Sd8;1ECXX$P5.y">
+                                                                    <field name="TEXT"></field>
+                                                                  </shadow>
+                                                                  <block type="variables_get" id="p1U%fDO/$;%m-kC4j)5g">
+                                                                    <field name="VAR" id="}-cgXuD|Do5n;bt(r=o2">dados</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="payload">
+                                                                  <shadow xmlns="https://bipes.net.br" type="text" id="/FsnSdUi72n$}b#?w+g+">
+                                                                    <field name="TEXT"></field>
+                                                                  </shadow>
+                                                                  <block type="variables_get" id="E3bZ0I+BRR;gxA=,nIM5">
+                                                                    <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="delay" id="/qU8pvWov,#rPR#?4KHM">
+                                                                <field name="SCALE">sleep</field>
+                                                                <value name="TIME">
+                                                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                    <field name="NUM">1</field>
+                                                                  </shadow>
+                                                                  <block type="math_number" id="h_)?wlk3wu%vCJ8}9X`%">
+                                                                    <field name="NUM">1</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defreturn" id="128#yDMC2*7l^[M`T5r!" x="-2263" y="-1937">
+    <field name="NAME">xor_bits</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="pZymU.eewZ9p8kNzS(Ir">
+        <field name="VAR" id="ICIe+{:[uQtPDUM|p,[U">result</field>
+        <value name="VALUE">
+          <block type="math_number" id="FCH=a15mqxgspsr4Nl?:">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="zfcy2gpDD@PyCI8J4.W.">
+            <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+            <value name="VALUE">
+              <block type="math_number" id="Ki=$S|J(dG7s{|%QV~)}">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="8s_34QWjW9A?(8!k7T#s">
+                <field name="VAR" id=",pO(SkB*hgBfK4--5@Ye">counter</field>
+                <value name="VALUE">
+                  <block type="math_number" id="dgZSAwv}8{ovxyP@VT~i">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_whileUntil" id="R(Jf3$8+KF6J+YyPOClQ">
+                    <field name="MODE">WHILE</field>
+                    <value name="BOOL">
+                      <block type="logic_compare" id="?.R0T@O!+XxW1R!5USc$">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="variables_get" id="ip?y2^kTRcV`,Xz)e`D3">
+                            <field name="VAR" id=",pO(SkB*hgBfK4--5@Ye">counter</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="*f|lor@#4Rn4EIp8a`BI">
+                            <field name="NUM">16</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="variables_set" id="J8IPky@9|fQQg$i9}v30">
+                        <field name="VAR" id="d7]azS2Z-m6T]=ZmGAh5">abit</field>
+                        <value name="VALUE">
+                          <block type="math_arithmetic" id="?awY3CRWV(y).eze:2CD">
+                            <field name="OP">MINUS</field>
+                            <value name="A">
+                              <shadow xmlns="https://bipes.net.br" type="math_number" id="rKtSXhP(-#K8UxrPl~AG">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="math_modulo" id="Vn4nKpwfzbwF*+?RfL;W">
+                                <value name="DIVIDEND">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="G0/4ajh0lr#}3}K=99j}">
+                                    <field name="NUM">64</field>
+                                  </shadow>
+                                  <block type="variables_get" id="fMf`6Ld!mJ}F9NP[f/IP">
+                                    <field name="VAR" id="G*l:74-K`/qs[@VG!s=!">a</field>
+                                  </block>
+                                </value>
+                                <value name="DIVISOR">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="RYvS%Y_3ukTZA1G{}@W0">
+                                    <field name="NUM">10</field>
+                                  </shadow>
+                                  <block type="math_arithmetic" id="M/9|1gyhwEz`tZvGQn6m">
+                                    <field name="OP">MULTIPLY</field>
+                                    <value name="A">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number" id="+%aC*!u4:MFn^sywH^4H">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="bR=!/+sIxFMBNS]lit;_">
+                                        <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number" id="sv6{!#|AoUa^r]?JO2W5">
+                                        <field name="NUM">2</field>
+                                      </shadow>
+                                      <block type="math_number" id="N._z$/dZ:1aA^[{jwU6B">
+                                        <field name="NUM">2</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <shadow xmlns="https://bipes.net.br" type="math_number" id="*9;+|mS:JnWW(.A[pRff">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="math_modulo" id="V!NW/ALotPl.]7a8jM$j">
+                                <value name="DIVIDEND">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                    <field name="NUM">64</field>
+                                  </shadow>
+                                  <block type="variables_get" id="XiM=(3_syrJlX,6KdjXS">
+                                    <field name="VAR" id="G*l:74-K`/qs[@VG!s=!">a</field>
+                                  </block>
+                                </value>
+                                <value name="DIVISOR">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="BbyU-HlUyi#9*i]zn~=`">
+                                    <field name="NUM">10</field>
+                                  </shadow>
+                                  <block type="variables_get" id="J.iiYbf{OAt,t8dDi^3w">
+                                    <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="Tj6Z)K`XInA?ehbQz+mR">
+                            <field name="VAR" id="8EG(abHc}vyVMDiv7@_`">bbit</field>
+                            <value name="VALUE">
+                              <block type="math_arithmetic" id="v](d*afXN#ae,q-bMzbX">
+                                <field name="OP">MINUS</field>
+                                <value name="A">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="math_modulo" id="PRKL`,Qm?pj+d+A;f5Ct">
+                                    <value name="DIVIDEND">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">64</field>
+                                      </shadow>
+                                      <block type="variables_get" id="1./bfY,DrO(g^;$YQ2h$">
+                                        <field name="VAR" id="%],Unmqf7X[oC_RLb;Z?">b</field>
+                                      </block>
+                                    </value>
+                                    <value name="DIVISOR">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">10</field>
+                                      </shadow>
+                                      <block type="math_arithmetic" id="0Ei*?j/1pis}nFmN8$wK">
+                                        <field name="OP">MULTIPLY</field>
+                                        <value name="A">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="variables_get" id="f(4R|Wcr=Oh5o%NqL2Om">
+                                            <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="!E`JdTN@D8X2:k^qIto[">
+                                            <field name="NUM">2</field>
+                                          </shadow>
+                                          <block type="math_number" id="/4):j#O=]%dPtnCVL2a=">
+                                            <field name="NUM">2</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="math_modulo" id="%,Fb.J{T2!G_EdBORs/_">
+                                    <value name="DIVIDEND">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">64</field>
+                                      </shadow>
+                                      <block type="variables_get" id="m{CE?)}dx=](kvn+gBWl">
+                                        <field name="VAR" id="%],Unmqf7X[oC_RLb;Z?">b</field>
+                                      </block>
+                                    </value>
+                                    <value name="DIVISOR">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">10</field>
+                                      </shadow>
+                                      <block type="variables_get" id="W-cp-,tKKH$eRF}kf8Ek">
+                                        <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="controls_if" id="9dJR#6xeHGR1!k?qdshF">
+                                <value name="IF0">
+                                  <block type="logic_operation" id="sLQm+7$M@{LjY_~D{$_=">
+                                    <field name="OP">OR</field>
+                                    <value name="A">
+                                      <block type="logic_operation" id="/0!Gw7ao}z2#_(?)-NdE">
+                                        <field name="OP">AND</field>
+                                        <value name="A">
+                                          <block type="logic_compare" id="}or#k6-XdFC*d8g,(K6y">
+                                            <field name="OP">NEQ</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="`mM)xXKQb87BI_z$,5fN">
+                                                <field name="VAR" id="d7]azS2Z-m6T]=ZmGAh5">abit</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="N$8X@#cZDrkp3^VX]]@!">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="logic_compare" id="!iUOZV!LOk8.i7irD%.Z">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="9;-PVgwzrVo0#!@?TedJ">
+                                                <field name="VAR" id="8EG(abHc}vyVMDiv7@_`">bbit</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="mc)^*:)LjbPDtG|R/Q1G">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="logic_operation" id=";+J}ftrL[qsb$.)R;6Bk">
+                                        <field name="OP">AND</field>
+                                        <value name="A">
+                                          <block type="logic_compare" id="|Km5=W!{!lMiNV/A2dC5">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="WM@,95|9p~9S$p88]ld^">
+                                                <field name="VAR" id="d7]azS2Z-m6T]=ZmGAh5">abit</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="^ew{{J%As[V:t2J[H/yf">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="logic_compare" id="v0i$1oy`uPehgna{KrP:">
+                                            <field name="OP">NEQ</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="/x?}(|*8UyLn?{}{xaPc">
+                                                <field name="VAR" id="8EG(abHc}vyVMDiv7@_`">bbit</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="q7fljH{-!/Guw[p^eout">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="variables_set" id="b~zgr~iBD#GH6Xa*~dkP">
+                                    <field name="VAR" id="ICIe+{:[uQtPDUM|p,[U">result</field>
+                                    <value name="VALUE">
+                                      <block type="math_arithmetic" id="6|C@;;=:gfbwUp-M7UDX">
+                                        <field name="OP">ADD</field>
+                                        <value name="A">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="l5ZB0u|~EXVlzYh7N/Dg">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="variables_get" id="5zcKnXMXFfvi*hZnCB/3">
+                                            <field name="VAR" id="ICIe+{:[uQtPDUM|p,[U">result</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="9xM,jQ)`V{B)?{#93dur">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="variables_get" id="NurwiTb,54/bVrybnD,S">
+                                            <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="variables_set" id="#j?)H)vWxX@IF@,R`P=]">
+                                    <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                    <value name="VALUE">
+                                      <block type="math_arithmetic" id="G?,vVZ8[V7^ev$^l3aHu">
+                                        <field name="OP">MULTIPLY</field>
+                                        <value name="A">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="MsCEB|e3rBJezanPtve3">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="variables_get" id="%eInjH}0LEaz_;jWy}9G">
+                                            <field name="VAR" id="T);cQ3/]KM%s)r9OAPzs">bit</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="qoiv7U6w#|d3Dwc`.uux">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="math_number" id="]PmA{B?*;^HA|rd?Bc#K">
+                                            <field name="NUM">2</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="#tRN{[Wn~Cd=CoK}1V~F">
+                                        <field name="VAR" id=",pO(SkB*hgBfK4--5@Ye">counter</field>
+                                        <value name="VALUE">
+                                          <block type="math_arithmetic" id="zG@C}n-.sQDNvWXivv8x">
+                                            <field name="OP">ADD</field>
+                                            <value name="A">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number" id="B#lJpB]V!-UgDVF/}0:-">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                              <block type="variables_get" id=")3YO#8yQfVvx3%5EW47:">
+                                                <field name="VAR" id=",pO(SkB*hgBfK4--5@Ye">counter</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number" id="xIIV`?Zr`m5u`p}/_qs`">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                              <block type="math_number" id="BDc+GadWD,|i-*l~g$*O">
+                                                <field name="NUM">1</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="-xALdHQFUN(}PgqvpLP3">
+        <field name="VAR" id="ICIe+{:[uQtPDUM|p,[U">result</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id=")SO?y;#wJ8Flu|f~omO8" x="-1137" y="-1938">
+    <field name="NAME">process_response</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="procedures_ifreturn" id="OThY`}Q#//{?UR3lI2lw">
+        <mutation value="1"></mutation>
+        <value name="CONDITION">
+          <block type="logic_operation" id="3lOBu7,@u?1(9XSNqnjW">
+            <field name="OP">OR</field>
+            <value name="A">
+              <block type="logic_compare" id="J|]~|Eo.9Kg##f5HL!)u">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="JLhWG0;EXwy.uw9`$._L">
+                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_null" id="EA544K{j=.)hBBX~(r7R"></block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="g;FT/d?-%aNI!Z14jN=Y">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="lists_length" id="EV?~+._wuf[yNAcf+?cf">
+                    <value name="VALUE">
+                      <block type="variables_get" id="GJ_^w8W2HP3[;w|W:Nxt">
+                        <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="1HMHFHXBKL(.+tAAt+ib">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="VALUE">
+          <block type="logic_null" id="mV1Lc-#hTQ@,=RcMnJvv"></block>
+        </value>
+        <next>
+          <block type="variables_set" id="2Z,AJr`5?Fw)rB.8u?**">
+            <field name="VAR" id="2(ndr7$q(#5`1YN8Z/(g">data</field>
+            <value name="VALUE">
+              <block type="lists_isEmpty" id="EHVkp7M3gtN{Nb;fF@t`">
+                <value name="VALUE">
+                  <block type="variables_get" id="UJ_[`6!:iR7+ZAC6;,oa">
+                    <field name="VAR" id="2(ndr7$q(#5`1YN8Z/(g">data</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="+FiU1Kwn$6FCm{Pt50Ur">
+                <field name="VAR" id="CfN1WMEr7OTA8i=sDz0N">k</field>
+                <value name="VALUE">
+                  <block type="math_number" id="CQvN?irD:`4k+pAiw`yB">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="efPwE)Du5(-z|tZMHDM;">
+                    <field name="VAR" id="vy6sMNvjB.k]484`4Cj+">limite</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="ccKnOpLjxTpyjsQ@D`Rn">
+                        <field name="OP">MINUS</field>
+                        <value name="A">
+                          <shadow xmlns="https://bipes.net.br" type="math_number" id="%j+v6QZ2bWsT@kI]R/=-">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="lists_length" id="WEV~%g3)RyWDwN:G{2c-">
+                            <value name="VALUE">
+                              <block type="variables_get" id="KdDT-Pg^Sl44gKY6J[ST">
+                                <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_number" id="6mUWAOlLE!e8nmbk9^k~">
+                            <field name="NUM">2</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_whileUntil" id="wG-zo2`Q29OSbl:LZl8r">
+                        <field name="MODE">WHILE</field>
+                        <value name="BOOL">
+                          <block type="logic_compare" id="Liy]Xb!-/D(f~jk?lvhQ">
+                            <field name="OP">NEQ</field>
+                            <value name="A">
+                              <block type="variables_get" id=".u@[QjO?X21m##pt*m+%">
+                                <field name="VAR" id="CfN1WMEr7OTA8i=sDz0N">k</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="-s4.DB)09-=DQ9aom}**">
+                                <field name="VAR" id="vy6sMNvjB.k]484`4Cj+">limite</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO">
+                          <block type="variables_set" id="d-j=ol~.yVQq|8T[m2{3">
+                            <field name="VAR" id="2(ndr7$q(#5`1YN8Z/(g">data</field>
+                            <value name="VALUE">
+                              <block type="lists_getIndex" id="k:P.b0yfcjhTTJ/[;.R_">
+                                <mutation statement="false" at="true"></mutation>
+                                <field name="MODE">GET</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="rvIjVDAI:EmZpdd3BV|W">
+                                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <block type="variables_get" id="iLK=5j#LgW-.|j?-hJ4w">
+                                    <field name="VAR" id="CfN1WMEr7OTA8i=sDz0N">k</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="n6K5`8`fYQPW#,4uOId6">
+                                <field name="VAR" id="CfN1WMEr7OTA8i=sDz0N">k</field>
+                                <value name="VALUE">
+                                  <block type="math_arithmetic" id="v)}4-MHHAw%S8X,G2y-G">
+                                    <field name="OP">ADD</field>
+                                    <value name="A">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="variables_get" id="D7)XxTkTU$5cux;|1$Y+">
+                                        <field name="VAR" id="CfN1WMEr7OTA8i=sDz0N">k</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="math_number" id="V,}{zz|)t-v=tsjYR^T/">
+                                        <field name="NUM">1</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="variables_set" id="zeu0;XzvM.6:cIIh0Ca.">
+                            <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                            <value name="VALUE">
+                              <block type="math_arithmetic" id="sqR/k=nOP%W[{-X~PU4W">
+                                <field name="OP">MINUS</field>
+                                <value name="A">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="lists_length" id="G#YO{VhjEt0vN5{.GJZs">
+                                    <value name="VALUE">
+                                      <block type="variables_get" id="?v-e1ib?3TZbF)@L!Jq6">
+                                        <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="math_number" id="M2G`O_ZfmK8C~Cq/R|2j">
+                                    <field name="NUM">2</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="UqKs*LTi[R3xNwK$x;P=">
+                                <field name="VAR" id="SyXMg}R`W)@$bLsX+|:6">low_byte</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="z:.~fWJW.NB0@~:-{WN]">
+                                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="z,NT5GvM$B?C7y@CIoh-">
+                                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                    <value name="VALUE">
+                                      <block type="math_arithmetic" id="j]5)J%J/3FTTRpg#F)OQ">
+                                        <field name="OP">MINUS</field>
+                                        <value name="A">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="lists_length" id="6K-~(Tfg1mGxGTYQ0HJ$">
+                                            <value name="VALUE">
+                                              <block type="variables_get" id="ZBvfJ*][U+%mCc*Tnad3">
+                                                <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="math_number" id="+(H5d.+P$y$Q0R4U?V2K">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="}i7i`ft@F0l#96)}6^yw">
+                                        <field name="VAR" id="ounM%5dS*nBXmD6SA,f?">high_byte</field>
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="FUN.!G?/7fJ3}}Sc{+1X">
+                                            <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id=",PL2t=La(@*C}5xQy;-~">
+                                            <field name="VAR" id="wkRf2st$PtTAZ!51eQW?">received_crc</field>
+                                            <value name="VALUE">
+                                              <block type="math_arithmetic" id="U#IW7mi|`-Fw=i+Ti@ow">
+                                                <field name="OP">ADD</field>
+                                                <value name="A">
+                                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                  <block type="variables_get" id="m,5r14!8}:vI.Io}pL{s">
+                                                    <field name="VAR" id="SyXMg}R`W)@$bLsX+|:6">low_byte</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="K!1MK2afdNsCmiU5F-Q:">
+                                                    <field name="NUM">1</field>
+                                                  </shadow>
+                                                  <block type="math_arithmetic" id="ue~DJ5hluIhj=CZB89su">
+                                                    <field name="OP">MULTIPLY</field>
+                                                    <value name="A">
+                                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                        <field name="NUM">1</field>
+                                                      </shadow>
+                                                      <block type="variables_get" id="|LL%lct`yT/c{vCzVb-u">
+                                                        <field name="VAR" id="ounM%5dS*nBXmD6SA,f?">high_byte</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <shadow xmlns="https://bipes.net.br" type="math_number" id="S4ECgD1l16,|wjZ!T=A-">
+                                                        <field name="NUM">1</field>
+                                                      </shadow>
+                                                      <block type="math_number" id="$ry-f._3WTsnU8gxU;jl">
+                                                        <field name="NUM">256</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="%$hxU82i,;X..~]qAT$S">
+                                                <field name="VAR" id=".bGPJ07gJ@Wpm7AL09}U">calculated_crc</field>
+                                                <value name="VALUE">
+                                                  <block type="procedures_callreturn" id="y{/7}/KHr/iR$lFmrtS8">
+                                                    <mutation name="calculate_crc"></mutation>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="procedures_ifreturn" id="M=y:M{NIa1e7VnA1d}v#">
+                                                    <mutation value="1"></mutation>
+                                                    <value name="CONDITION">
+                                                      <block type="logic_compare" id="#~Ugz5EuV*oR!-o1Of-#">
+                                                        <field name="OP">NEQ</field>
+                                                        <value name="A">
+                                                          <block type="variables_get" id="Vm{UvM3x@e[n3(S3O1v9">
+                                                            <field name="VAR" id="wkRf2st$PtTAZ!51eQW?">received_crc</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="B">
+                                                          <block type="variables_get" id="z4@B:/juUulhZR=!5:rO">
+                                                            <field name="VAR" id=".bGPJ07gJ@Wpm7AL09}U">calculated_crc</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <value name="VALUE">
+                                                      <block type="logic_null" id="3jTlUelK-jVW-+-}zHSd"></block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set" id="D9;tx}N(u7=jB!u@f;}z">
+                                                        <field name="VAR" id="FBSUy$;i9J{{V+(8u:a]">byte_count</field>
+                                                        <value name="VALUE">
+                                                          <block type="lists_getIndex" id="!(XCjugQ_A.n7c-{zhyw">
+                                                            <mutation statement="false" at="true"></mutation>
+                                                            <field name="MODE">GET</field>
+                                                            <field name="WHERE">FROM_START</field>
+                                                            <value name="VALUE">
+                                                              <block type="variables_get" id="#:/6h7|XoO#A)p,*iQiU">
+                                                                <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="AT">
+                                                              <block type="math_number" id="EbNFw+|aw)qWC4XRF85?">
+                                                                <field name="NUM">2</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="variables_set" id="c@kY8CtcGMHG@;HJQ=PP">
+                                                            <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                            <value name="VALUE">
+                                                              <block type="lists_isEmpty" id="#Q}y(}AxPWiAmz#t+R}d">
+                                                                <value name="VALUE">
+                                                                  <block type="variables_get" id="S0~h1H:S{UEhAsw~Rn6$">
+                                                                    <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="variables_set" id="ZS/l-!KQS}NH8lr3zE~b">
+                                                                <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                <value name="VALUE">
+                                                                  <block type="math_number" id="TCS;uJgtL]Tx+!,R;jmL">
+                                                                    <field name="NUM">3</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="variables_set" id="P3:,JNPt?,`C7Vv^1TAM">
+                                                                    <field name="VAR" id="FpAyw.@yJ^~O@{T)M1sq">fim</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="math_arithmetic" id="JOD9UW@2y};%-]52wsC5">
+                                                                        <field name="OP">ADD</field>
+                                                                        <value name="A">
+                                                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="Pv;R^nG.ec#zc3Q4|*PB">
+                                                                            <field name="NUM">1</field>
+                                                                          </shadow>
+                                                                          <block type="math_number" id="6v[P@LQFpR2X(0aMc_n.">
+                                                                            <field name="NUM">3</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="B">
+                                                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="xvGIt72C7eW|+u=ZT)n;">
+                                                                            <field name="NUM">1</field>
+                                                                          </shadow>
+                                                                          <block type="variables_get" id="(rf!?%s?j2-$T0?2$_lJ">
+                                                                            <field name="VAR" id="FBSUy$;i9J{{V+(8u:a]">byte_count</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="controls_whileUntil" id="R(VA1jtZHxnqdxyJ(S5#">
+                                                                        <field name="MODE">WHILE</field>
+                                                                        <value name="BOOL">
+                                                                          <block type="logic_compare" id="=t^H`u7cROviH/#)b2t)">
+                                                                            <field name="OP">NEQ</field>
+                                                                            <value name="A">
+                                                                              <block type="variables_get" id="x@RKm*Qidg$uL$kjO*F2">
+                                                                                <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="B">
+                                                                              <block type="variables_get" id="0dK/w+l0H(1=.3DQ;oPe">
+                                                                                <field name="VAR" id="FpAyw.@yJ^~O@{T)M1sq">fim</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                        <statement name="DO">
+                                                                          <block type="variables_set" id="q1UG?w*+956+!a+tispr">
+                                                                            <field name="VAR" id="vwp|^w;RV4a-j+[sUmM7">high</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="lists_getIndex" id="bZd`9uQ+oYOg?.s){vQF">
+                                                                                <mutation statement="false" at="true"></mutation>
+                                                                                <field name="MODE">GET</field>
+                                                                                <field name="WHERE">FROM_START</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="variables_get" id="SJoUt|iv`8i3s[8=cXg|">
+                                                                                    <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <value name="AT">
+                                                                                  <block type="variables_get" id="lF.Z(uLe;VoA*F!JopWT">
+                                                                                    <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="variables_set" id="Y-k8^IaMEU_klbM1ZMOh">
+                                                                                <field name="VAR" id="K{@{4:$3r|nY+5X1!/xt">low</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="lists_getIndex" id="kg8z,AdyTb/}+#yOqxCD">
+                                                                                    <mutation statement="false" at="true"></mutation>
+                                                                                    <field name="MODE">GET</field>
+                                                                                    <field name="WHERE">FROM_START</field>
+                                                                                    <value name="VALUE">
+                                                                                      <block type="variables_get" id="Ob{XQsXF9;Q+sFI9.+_S">
+                                                                                        <field name="VAR" id="Pr{aJZSa*S1dK4=68j.Z">response</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <value name="AT">
+                                                                                      <block type="math_arithmetic" id="OXaSK]7*y`UhR5gMf!*I">
+                                                                                        <field name="OP">ADD</field>
+                                                                                        <value name="A">
+                                                                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                                            <field name="NUM">1</field>
+                                                                                          </shadow>
+                                                                                          <block type="variables_get" id="P}mUFGZDw$DA2TVU*wHQ">
+                                                                                            <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="B">
+                                                                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                                            <field name="NUM">1</field>
+                                                                                          </shadow>
+                                                                                          <block type="math_number" id="~8%chDAb)63gCEc17XQr">
+                                                                                            <field name="NUM">2</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="variables_set" id="zUtM6tF258G9t{Pa,2D7">
+                                                                                    <field name="VAR" id="g}Ps-Hv;4PiA:w=+c3eo">value</field>
+                                                                                    <value name="VALUE">
+                                                                                      <block type="math_arithmetic" id="mwZU_QMJ~3q^*CfaGkS|">
+                                                                                        <field name="OP">MULTIPLY</field>
+                                                                                        <value name="A">
+                                                                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="V`Zt[{7=y}s.*shzC+%:">
+                                                                                            <field name="NUM">1</field>
+                                                                                          </shadow>
+                                                                                          <block type="variables_get" id="QV1vkDC4fzr}N8U7fKrb">
+                                                                                            <field name="VAR" id="vwp|^w;RV4a-j+[sUmM7">high</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="B">
+                                                                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="!@A5O,H^@Z_h*EzWvs]/">
+                                                                                            <field name="NUM">1</field>
+                                                                                          </shadow>
+                                                                                          <block type="math_arithmetic" id=",5`a.6|{W;|aS+)cO0{:">
+                                                                                            <field name="OP">ADD</field>
+                                                                                            <value name="A">
+                                                                                              <shadow xmlns="https://bipes.net.br" type="math_number" id="%=Wl66h{H^YVNFO$vr28">
+                                                                                                <field name="NUM">1</field>
+                                                                                              </shadow>
+                                                                                              <block type="math_number" id="K|0]_^]KOaTQfL]5bas$">
+                                                                                                <field name="NUM">256</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="B">
+                                                                                              <shadow xmlns="https://bipes.net.br" type="math_number" id="P`3s!eZ%H`!WNdI;O?L^">
+                                                                                                <field name="NUM">1</field>
+                                                                                              </shadow>
+                                                                                              <block type="variables_get" id="*|Rc}98Na+i^bw6.hnHz">
+                                                                                                <field name="VAR" id="K{@{4:$3r|nY+5X1!/xt">low</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="lists_setIndex" id="|YCTS!mQP6__uHe/Utwy">
+                                                                                        <mutation at="false"></mutation>
+                                                                                        <field name="MODE">INSERT</field>
+                                                                                        <field name="WHERE">LAST</field>
+                                                                                        <value name="LIST">
+                                                                                          <block type="variables_get" id="`R$5-cj.:;g(v5ah*dRK">
+                                                                                            <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="TO">
+                                                                                          <block type="variables_get" id="mpQ^_ns@k;+D*uU=|}hF">
+                                                                                            <field name="VAR" id="g}Ps-Hv;4PiA:w=+c3eo">value</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="variables_set" id="}PMM)=c5uan~@3wQ}(/%">
+                                                                                            <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                                            <value name="VALUE">
+                                                                                              <block type="math_arithmetic" id="Jge!X-sKNh_-o3[Fugaj">
+                                                                                                <field name="OP">ADD</field>
+                                                                                                <value name="A">
+                                                                                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                                                    <field name="NUM">1</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="variables_get" id=",I{qB]()DM.*0uxrE^NB">
+                                                                                                    <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <value name="B">
+                                                                                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                                                    <field name="NUM">1</field>
+                                                                                                  </shadow>
+                                                                                                  <block type="math_number" id="5NRZ.(J$q:(PHwz%D/tO">
+                                                                                                    <field name="NUM">2</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </statement>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="?U`xCCWi`KSTCKVI(I4?">
+        <field name="VAR" id="#mScNjGm8.WoM@jgrGUm">registers</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="F@NU#H04sXBeyx60(i,;" x="-1738" y="-1563">
+    <field name="NAME">setup_mqtt</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="mqtt_init" id="xxcR^nz;HnEK([}2qv~8">
+        <field name="BLOCK_MQTT_INIT">Start MQTT Client</field>
+        <field name="MQTT_SERVER">Server Address</field>
+        <field name="MQTT_PORT">Server Port</field>
+        <field name="MQTT_USER">Username</field>
+        <field name="MQTT_PASSWORD">Password</field>
+        <value name="server">
+          <shadow type="text" id="zD~+]XTnqhr?1yp4jyLB">
+            <field name="TEXT">192.168.43.202</field>
+          </shadow>
+        </value>
+        <value name="port">
+          <shadow type="math_number" id="sb^d=XJ^atBv=GLD/KZ}">
+            <field name="NUM">1883</field>
+          </shadow>
+        </value>
+        <value name="user">
+          <shadow type="text" id="^}DU{7pp9)cycb[8x0ef">
+            <field name="TEXT">bipes</field>
+          </shadow>
+        </value>
+        <value name="password">
+          <shadow type="text" id="ef9-NUsUiX{`Z|gYu0#/">
+            <field name="TEXT">m8YLUr5uW3T</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="f`eZ0w%Q6fJ-)KdC7|5a">
+        <field name="VAR" id="nt?!{FhaO5@RSXW+5z}u">mqtt_client</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="#j$RzgmOqcjaR]V1*K,f" x="-2162" y="-1363">
+    <field name="NAME">create_modbus_request</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="$,/}8@JNgi1d}(,5,m^v">
+        <field name="VAR" id="{D5sxAFX}/Ie9Y%h]cUf">start_address_high</field>
+        <value name="VALUE">
+          <block type="math_modulo" id="qQc7~~+LSsWT?%UQQIRv">
+            <value name="DIVIDEND">
+              <shadow xmlns="https://bipes.net.br" type="math_number" id="..vzJw}/kuPmMq5+5PT~">
+                <field name="NUM">64</field>
+              </shadow>
+              <block type="math_arithmetic" id=")tOH=k,bO(,KU+`E@;n4">
+                <field name="OP">DIVIDE</field>
+                <value name="A">
+                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="variables_get" id="$6PZQg8I_G:s]ju/,Eu1">
+                    <field name="VAR" id="!4:A`%5V?@#Iees2H.Fi">start_address</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                    <field name="NUM">1</field>
+                  </shadow>
+                  <block type="math_number" id="7{8x[h`]_ouS41qZGt`v">
+                    <field name="NUM">256</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="DIVISOR">
+              <shadow xmlns="https://bipes.net.br" type="math_number" id="s1{s2#r9SzVfDMW`ceQ#">
+                <field name="NUM">10</field>
+              </shadow>
+              <block type="math_number" id="AaX4F.j2H+Z(a8IrKrW2">
+                <field name="NUM">256</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="A5)s5V3r.]Hct(3[Geod">
+            <field name="VAR" id=",i3#b;#PSP0[1!dl6,)F">start_address_low</field>
+            <value name="VALUE">
+              <block type="math_modulo" id="qh9%EOGor$lMox]Np5Z%">
+                <value name="DIVIDEND">
+                  <shadow xmlns="https://bipes.net.br" type="math_number" id="%seTZ_yO`[}80yfZxchb">
+                    <field name="NUM">64</field>
+                  </shadow>
+                  <block type="variables_get" id="gF].Oi`DLFM6i:02bA%e">
+                    <field name="VAR" id="!4:A`%5V?@#Iees2H.Fi">start_address</field>
+                  </block>
+                </value>
+                <value name="DIVISOR">
+                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                    <field name="NUM">10</field>
+                  </shadow>
+                  <block type="math_number" id="@0Pepe*P9z3iybM.hlF+">
+                    <field name="NUM">256</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id=";g7Jln,peHlXEST68]3%">
+                <field name="VAR" id="37d5``eSK-`CIEr9.=SC">register_count_high</field>
+                <value name="VALUE">
+                  <block type="math_modulo" id="8lr8pPU~|FvAGO{q9[-`">
+                    <value name="DIVIDEND">
+                      <shadow xmlns="https://bipes.net.br" type="math_number" id="NMoG8B)_jXDT1rJ72%Mn">
+                        <field name="NUM">64</field>
+                      </shadow>
+                      <block type="math_arithmetic" id=":PrnEoS{]x!X%5|?@-O`">
+                        <field name="OP">DIVIDE</field>
+                        <value name="A">
+                          <shadow xmlns="https://bipes.net.br" type="math_number" id="Y|oj2g~b-PzYA`}X@;eo">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="variables_get" id="`.HdlEbZc@=L8lnxA.7$">
+                            <field name="VAR" id="QAE@rbS??|:~Qe`b%VM3">register_count</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_number" id="Kdt84njf3`E;9O}j)ycw">
+                            <field name="NUM">256</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="DIVISOR">
+                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                        <field name="NUM">10</field>
+                      </shadow>
+                      <block type="math_number" id=";o[x)BDz_ew5^`LHWl16">
+                        <field name="NUM">256</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="A5-Gt`unF-;{_fonR01w">
+                    <field name="VAR" id="icMiJ,^ly+8z=mkNHj?,">register_count_low</field>
+                    <value name="VALUE">
+                      <block type="math_modulo" id=";U8b8oQQU-]Bie){jbiw">
+                        <value name="DIVIDEND">
+                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                            <field name="NUM">64</field>
+                          </shadow>
+                          <block type="variables_get" id="W(qja28Y24-m;AVG5EZx">
+                            <field name="VAR" id="QAE@rbS??|:~Qe`b%VM3">register_count</field>
+                          </block>
+                        </value>
+                        <value name="DIVISOR">
+                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                            <field name="NUM">10</field>
+                          </shadow>
+                          <block type="math_number" id="BepQ8!%v.2UtYL6,iEB*">
+                            <field name="NUM">256</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="{qh]H)6KLYx.dGa%5}YK">
+                        <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                        <value name="VALUE">
+                          <block type="lists_isEmpty" id="kLv^nQ+h?eKIuNq0,|@E">
+                            <value name="VALUE">
+                              <block type="variables_get" id="W8ijjdKF;vmi;#MA68TA">
+                                <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lists_setIndex" id="b:s=0wYm6u#sk[?8CQQ:">
+                            <mutation at="false"></mutation>
+                            <field name="MODE">INSERT</field>
+                            <field name="WHERE">LAST</field>
+                            <value name="LIST">
+                              <block type="variables_get" id="BBF-FBF,3m}GU+(1f6@E">
+                                <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                              </block>
+                            </value>
+                            <value name="TO">
+                              <block type="variables_get" id="[ab71H6r}8YWXCLx8Ug?">
+                                <field name="VAR" id="!4:A`%5V?@#Iees2H.Fi">start_address</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lists_setIndex" id="/ATB4C[Wc8NTwhlsj*b8">
+                                <mutation at="false"></mutation>
+                                <field name="MODE">INSERT</field>
+                                <field name="WHERE">LAST</field>
+                                <value name="LIST">
+                                  <block type="variables_get" id="~#,2-iZ7SMFiZ9}qIu4D">
+                                    <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                  </block>
+                                </value>
+                                <value name="TO">
+                                  <block type="variables_get" id="YF`Jq0sF)SZ,6L,`J~)?">
+                                    <field name="VAR" id="*~j$ECGVxoln?v-)4K#;">function_code</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lists_setIndex" id="c8[FKhCWTp-odUTHjCtD">
+                                    <mutation at="false"></mutation>
+                                    <field name="MODE">INSERT</field>
+                                    <field name="WHERE">LAST</field>
+                                    <value name="LIST">
+                                      <block type="variables_get" id="Z_EZvd-ppT01)~KVR$Z3">
+                                        <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                      </block>
+                                    </value>
+                                    <value name="TO">
+                                      <block type="variables_get" id="tIg(fUqnF7pRv/?rqPLV">
+                                        <field name="VAR" id="{D5sxAFX}/Ie9Y%h]cUf">start_address_high</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="lists_setIndex" id="w*YI#/.vpM@5_@fGYTB!">
+                                        <mutation at="false"></mutation>
+                                        <field name="MODE">INSERT</field>
+                                        <field name="WHERE">LAST</field>
+                                        <value name="LIST">
+                                          <block type="variables_get" id="9!`4%f_nck6U:JZY,Oaa">
+                                            <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                          </block>
+                                        </value>
+                                        <value name="TO">
+                                          <block type="variables_get" id="E-S,2kQFbnlAaFa-im_9">
+                                            <field name="VAR" id=",i3#b;#PSP0[1!dl6,)F">start_address_low</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="lists_setIndex" id="7NktM4beY5?Q`o}I9?p=">
+                                            <mutation at="false"></mutation>
+                                            <field name="MODE">INSERT</field>
+                                            <field name="WHERE">LAST</field>
+                                            <value name="LIST">
+                                              <block type="variables_get" id="4z[WyX7|#$`1J+GhPkDS">
+                                                <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                              </block>
+                                            </value>
+                                            <value name="TO">
+                                              <block type="variables_get" id="$!,KR0NfTITyFDxC`6#h">
+                                                <field name="VAR" id="37d5``eSK-`CIEr9.=SC">register_count_high</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="lists_setIndex" id="!+f8yfBp*P+G$86cs*Ao">
+                                                <mutation at="false"></mutation>
+                                                <field name="MODE">INSERT</field>
+                                                <field name="WHERE">LAST</field>
+                                                <value name="LIST">
+                                                  <block type="variables_get" id="xz12xo)ct6QQ*(+H8+%V">
+                                                    <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                                  </block>
+                                                </value>
+                                                <value name="TO">
+                                                  <block type="variables_get" id="rwO|XI?C0FFoB_^HIlV*">
+                                                    <field name="VAR" id="icMiJ,^ly+8z=mkNHj?,">register_count_low</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="p#4se!x]}88:+j*Gv#UE">
+                                                    <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                                    <value name="VALUE">
+                                                      <block type="procedures_callreturn" id="~}AbO6G)ZH-9z[z)?b{T">
+                                                        <mutation name="calculate_crc"></mutation>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set" id="+yXD7;w=#QS5MI,Ks|b-">
+                                                        <field name="VAR" id="2([M0EIp*%c~v:OMf[Ni">crc_low</field>
+                                                        <value name="VALUE">
+                                                          <block type="math_modulo" id="SMMsI-bF2FAC-)1HJX|g">
+                                                            <value name="DIVIDEND">
+                                                              <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                <field name="NUM">64</field>
+                                                              </shadow>
+                                                              <block type="variables_get" id="+dO!ftpoADNF|1gHz{t^">
+                                                                <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="DIVISOR">
+                                                              <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                <field name="NUM">10</field>
+                                                              </shadow>
+                                                              <block type="math_number" id="Kel_j`O2)|BGKLbob=sB">
+                                                                <field name="NUM">256</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="variables_set" id="Kol$N6lP*/%%mJEn1ebN">
+                                                            <field name="VAR" id="/8Q.tS9Aci~;Avi,-?D2">crc_high</field>
+                                                            <value name="VALUE">
+                                                              <block type="math_modulo" id="1kl#};Ed@]:PDA6JSFj,">
+                                                                <value name="DIVIDEND">
+                                                                  <shadow xmlns="https://bipes.net.br" type="math_number" id="g_HK}VU,30a4kJCM=ra8">
+                                                                    <field name="NUM">64</field>
+                                                                  </shadow>
+                                                                  <block type="math_arithmetic" id="c`hkUNTxvHHTB+f:g*R9">
+                                                                    <field name="OP">DIVIDE</field>
+                                                                    <value name="A">
+                                                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                        <field name="NUM">1</field>
+                                                                      </shadow>
+                                                                      <block type="variables_get" id="GWD^*SHP!P@o4LZ^{N`p">
+                                                                        <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                        <field name="NUM">1</field>
+                                                                      </shadow>
+                                                                      <block type="math_number" id="BIQd8w!}{OSOF#AAmA7$">
+                                                                        <field name="NUM">256</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="DIVISOR">
+                                                                  <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                                    <field name="NUM">10</field>
+                                                                  </shadow>
+                                                                  <block type="math_number" id="ml$4(Y7L/IzA$tC3g!$T">
+                                                                    <field name="NUM">256</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="lists_setIndex" id="1:T(e+9w}c62_9]m-I?f">
+                                                                <mutation at="false"></mutation>
+                                                                <field name="MODE">INSERT</field>
+                                                                <field name="WHERE">LAST</field>
+                                                                <value name="LIST">
+                                                                  <block type="variables_get" id="QS)7KX(,o6YQPm1.1Z(Z">
+                                                                    <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="TO">
+                                                                  <block type="variables_get" id="a}*OC5NKkbGbg2Xmxib$">
+                                                                    <field name="VAR" id="2([M0EIp*%c~v:OMf[Ni">crc_low</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="lists_setIndex" id="QMU!@kRZhuxrCS=k{sK(">
+                                                                    <mutation at="false"></mutation>
+                                                                    <field name="MODE">INSERT</field>
+                                                                    <field name="WHERE">LAST</field>
+                                                                    <value name="LIST">
+                                                                      <block type="variables_get" id="MjMoY*T@:.]FV}DB1h]n">
+                                                                        <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="TO">
+                                                                      <block type="variables_get" id="cr}C|4um`iZ3Lx(Kn#%P">
+                                                                        <field name="VAR" id="/8Q.tS9Aci~;Avi,-?D2">crc_high</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="variables_set" id="KJP.Ton{*n.w3rx=NI.]">
+                                                                        <field name="VAR" id="UQHasl*9mU%VFXrG)gNW">bytearray</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="variables_get" id="KO(HGvT;|$,yFPAkuBZ5">
+                                                                            <field name="VAR" id="e4[T3rka`.#5Q@,fpd.U">request</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="U5iBnMtp_l:Nq5|1}!_G">
+        <field name="VAR" id="UQHasl*9mU%VFXrG)gNW">bytearray</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="AMaqYpU3}apIj3^Utu-%" x="-2788" y="-1262">
+    <field name="NAME">calculate_crc</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="uavPjz~_N)d1y2QyHRJ8">
+        <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+        <value name="VALUE">
+          <block type="math_number" id="L-m-[n1om8!Qfio(+ou:">
+            <field name="NUM">65535</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="+.*_jKXf96}OZLs*@_eJ">
+            <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+            <value name="VALUE">
+              <block type="math_number" id="9F@HvQ:QZ`A)Xe?=J(5(">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="xL;v~JyEbbS9*oIdxLn-">
+                <field name="VAR" id="0;GE(yBck)z]x8YC=N3=">size</field>
+                <value name="VALUE">
+                  <block type="lists_length" id=".)8.d!:wjF^]cQR7/(l,">
+                    <value name="VALUE">
+                      <block type="variables_get" id="gOwV.bY}^MyA;{PRDG~1">
+                        <field name="VAR" id="2(ndr7$q(#5`1YN8Z/(g">data</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_whileUntil" id="4:3m0fRj-3BDJS-AlDbj">
+                    <field name="MODE">WHILE</field>
+                    <value name="BOOL">
+                      <block type="logic_compare" id="C]A`g!W?}U3`v7$M%s-5">
+                        <field name="OP">NEQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="av$Mq!wU%!`Z`9Qfe4QX">
+                            <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="Aae7rcazlRhomF.=[uX=">
+                            <field name="VAR" id="0;GE(yBck)z]x8YC=N3=">size</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="variables_set" id="pTz`J*$]#Yn)`a/fL.hZ">
+                        <field name="VAR" id="Wb*uPLa5r(.M~Vh-8T?F">byte</field>
+                        <value name="VALUE">
+                          <block type="lists_getIndex" id="0^@SPnnQrI6{bXtgk~C!">
+                            <mutation statement="false" at="true"></mutation>
+                            <field name="MODE">GET</field>
+                            <field name="WHERE">FROM_START</field>
+                            <value name="VALUE">
+                              <block type="variables_get" id="0D1XQI~/H49IxNS|P%G?">
+                                <field name="VAR" id="2(ndr7$q(#5`1YN8Z/(g">data</field>
+                              </block>
+                            </value>
+                            <value name="AT">
+                              <block type="variables_get" id="V@$RxV*We8bCEM5B*+KD">
+                                <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="VMlld!q1i~?3KD71W./Z">
+                            <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                            <value name="VALUE">
+                              <block type="procedures_callreturn" id="@TVsB7L1V@vv.-4CNmQ`">
+                                <mutation name="xor_bits"></mutation>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="(}758m.Btz=inXEL^-DP">
+                                <field name="VAR" id="5A]TS4@^kbSxy=eg1v83">j</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="}[9A]8v+~Z//w.+h.+]N">
+                                    <field name="NUM">0</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="controls_whileUntil" id="uJJNDnZnk~g[dY1!:!Te">
+                                    <field name="MODE">WHILE</field>
+                                    <value name="BOOL">
+                                      <block type="logic_compare" id="rXs6Y|G5s0C82~r,?aMU">
+                                        <field name="OP">NEQ</field>
+                                        <value name="A">
+                                          <block type="variables_get" id=")@oJZ1.:VjzJR0jsItQs">
+                                            <field name="VAR" id="5A]TS4@^kbSxy=eg1v83">j</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="math_number" id="4Z69rM/Iw03+xwT(2{c[">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO">
+                                      <block type="variables_set" id="]2)/4LRDNCio^2sOKF@D">
+                                        <field name="VAR" id="4,f{67M+MMxYvz*tG4dE">lsb</field>
+                                        <value name="VALUE">
+                                          <block type="math_modulo" id="S~jILL7Tr@^i!%2j9,FM">
+                                            <value name="DIVIDEND">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                <field name="NUM">64</field>
+                                              </shadow>
+                                              <block type="variables_get" id="i?d^GXzmn3UX[UW1c{Y;">
+                                                <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                              </block>
+                                            </value>
+                                            <value name="DIVISOR">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number" id="X_rWN!Ji.w2#/q7YurV=">
+                                                <field name="NUM">10</field>
+                                              </shadow>
+                                              <block type="math_number" id="Fo7v0#weHk==ubNc6My`">
+                                                <field name="NUM">2</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="f|sp@;{l`BL==08}Nqu]">
+                                            <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                            <value name="VALUE">
+                                              <block type="procedures_callreturn" id="Io=cR^s.UuUdWv)q;%Xb">
+                                                <mutation name="int_division"></mutation>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="controls_if" id="^rrGTWaPhs[6PLkY/JyQ">
+                                                <value name="IF0">
+                                                  <block type="logic_compare" id="cSOV!?~o)6WYXnjE%+-(">
+                                                    <field name="OP">NEQ</field>
+                                                    <value name="A">
+                                                      <block type="variables_get" id="$G*oMe1vh3@3SSD)]7c6">
+                                                        <field name="VAR" id="4,f{67M+MMxYvz*tG4dE">lsb</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="B">
+                                                      <block type="math_number" id="%4P}NBq`[bgwrlx}jF#f">
+                                                        <field name="NUM">0</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                  <block type="variables_set" id="c79;c6ThPG@Xi3K##guU">
+                                                    <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+                                                    <value name="VALUE">
+                                                      <block type="procedures_callreturn" id="te2L6WlQ1|V(.ih;zoB4">
+                                                        <mutation name="xor_bits"></mutation>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="variables_set" id="W|BsKyG.C)MDs[XKaV1p">
+                                                    <field name="VAR" id="5A]TS4@^kbSxy=eg1v83">j</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_arithmetic" id="Et_Ra|T1c/L`M|2vWIM1">
+                                                        <field name="OP">DIVIDE</field>
+                                                        <value name="A">
+                                                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                            <field name="NUM">1</field>
+                                                          </shadow>
+                                                          <block type="variables_get" id="#Nnku;SBGAvXL!!V1^]z">
+                                                            <field name="VAR" id="5A]TS4@^kbSxy=eg1v83">j</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="B">
+                                                          <shadow xmlns="https://bipes.net.br" type="math_number" id="2j?t4/z9%0aDFID3vw|Z">
+                                                            <field name="NUM">1</field>
+                                                          </shadow>
+                                                          <block type="math_number" id="+y1w)5[Vu1_4LQsItxYD">
+                                                            <field name="NUM">1</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="variables_set" id="iwH$I2+r.3vZE-u(!F~c">
+                                        <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                        <value name="VALUE">
+                                          <block type="math_arithmetic" id="R(0x[Il,*^7*#rRM]/#8">
+                                            <field name="OP">DIVIDE</field>
+                                            <value name="A">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                              <block type="variables_get" id="{(4dyD~U6e@y,?v!!)Qo">
+                                                <field name="VAR" id="MC|9X35XcUn%rl}g##Ie">i</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <shadow xmlns="https://bipes.net.br" type="math_number">
+                                                <field name="NUM">1</field>
+                                              </shadow>
+                                              <block type="math_number" id="tanY~B4-HCbqk_i?ILlf">
+                                                <field name="NUM">1</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="math_modulo" id="k3PK_vdY,`}h-)Nt2F^@">
+        <value name="DIVIDEND">
+          <shadow xmlns="https://bipes.net.br" type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+          <block type="variables_get" id="yooADn9XP-:09QY0EJX-">
+            <field name="VAR" id="-[LgmryGUBT0y8oMmuN(">crc</field>
+          </block>
+        </value>
+        <value name="DIVISOR">
+          <shadow xmlns="https://bipes.net.br" type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+          <block type="math_number" id=".b8M7Hr*z9+no^Xe`X8K">
+            <field name="NUM">65536</field>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="eC5h)$IJ6z*=:U`=+yU`" x="-1462" y="-1138">
+    <field name="NAME">setup_uart</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="uart_init" id="y@dG;tq14qyfe1k0A6p^">
+        <value name="port">
+          <block type="math_number" id="Nrh]T,Ue+,-*.`/!fA-F">
+            <field name="NUM">2</field>
+          </block>
+        </value>
+        <value name="speed">
+          <block type="math_number" id="5/L5f{WnwpYg#)o!W?jY">
+            <field name="NUM">9600</field>
+          </block>
+        </value>
+        <value name="bits">
+          <block type="math_number" id="w,:[UAIh?2za:TXJs(Ps">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="stop">
+          <block type="math_number" id=")F0A~QgM9d_H_c(cFV[=">
+            <field name="NUM">2</field>
+          </block>
+        </value>
+        <value name="par">
+          <block type="logic_null" id="AxU?5Xbo.P;=:puay+I:"></block>
+        </value>
+        <next>
+          <block type="machine.Pin_Pin.value" id="uC6-qeMmy-*D_%0@l=T%">
+            <value name="pIn">
+              <block type="pinout" id="rw~H*|6WG`15Cn::GV(~">
+                <field name="DEVICE">ESP32</field>
+                <field name="PIN">17</field>
+              </block>
+            </value>
+            <next>
+              <block type="machine.Pin_Pin.value" id="]U+CNaezKihR4sU%-6?Q">
+                <value name="pIn">
+                  <block type="pinout" id="hAvKRNSXFrCL/V?FMmT`">
+                    <field name="DEVICE">ESP32</field>
+                    <field name="PIN">16</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="delay" id="JA6qi$.7V@v{lA[zYNB4">
+                    <field name="SCALE">sleep_ms</field>
+                    <value name="TIME">
+                      <shadow xmlns="https://bipes.net.br" type="math_number" id="4$Qtv~R!lY9;#2iOCk-V">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="math_number" id="6iEyH.V49kFh/_w~fQ}l">
+                        <field name="NUM">200</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="~9S$`,mE}45gx?QJ!T9B">
+        <field name="VAR" id="zMwf?;$u/_?^7$obEm/h">uart</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defreturn" id="(eTac/nX0_DvxVkBxYu:" x="-1037" y="-887">
+    <field name="NAME">int_division</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="RcalP,_Q{aT{A3J}35*R">
+        <field name="VAR" id="PF,._m@rmtZhp09v.y3d">quotient</field>
+        <value name="VALUE">
+          <block type="math_number" id="N}v8FM9G4sMd]?r8WnQX">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="1@ZjM9hV#wNpeCwO|LZ@">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_compare" id="Rz16QGTCFh,i0sk]iBKK">
+                <field name="OP">GTE</field>
+                <value name="A">
+                  <block type="variables_get" id="lOzkT-B,]g[26fg-36o5">
+                    <field name="VAR" id="G*l:74-K`/qs[@VG!s=!">a</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="dc_17v!^r76wr2}w?*(L">
+                    <field name="VAR" id="%],Unmqf7X[oC_RLb;Z?">b</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="variables_set" id="wD?]dO8bf[w!NKLu3EXw">
+                <field name="VAR" id="G*l:74-K`/qs[@VG!s=!">a</field>
+                <value name="VALUE">
+                  <block type="math_arithmetic" id="uihZI}+HX`wD.1]|XdRN">
+                    <field name="OP">MINUS</field>
+                    <value name="A">
+                      <shadow xmlns="https://bipes.net.br" type="math_number">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="variables_get" id="etV-o?eDU_l_7La$tYgE">
+                        <field name="VAR" id="G*l:74-K`/qs[@VG!s=!">a</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <shadow xmlns="https://bipes.net.br" type="math_number" id="=$uC9D}X.@?#qG:i5rhq">
+                        <field name="NUM">1</field>
+                      </shadow>
+                      <block type="variables_get" id="`,T)~##e9Cv8hDf-!;3_">
+                        <field name="VAR" id="%],Unmqf7X[oC_RLb;Z?">b</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="d~)xd{Rn@?a+dV3Gm2=^">
+                    <field name="VAR" id="PF,._m@rmtZhp09v.y3d">quotient</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="31_U2,V:c$urVZH~9d?8">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                          <shadow xmlns="https://bipes.net.br" type="math_number">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="variables_get" id="}B3.[[bFLbh({ialbw;=">
+                            <field name="VAR" id="PF,._m@rmtZhp09v.y3d">quotient</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <shadow xmlns="https://bipes.net.br" type="math_number" id="wkEePrU#hrF-83jraULt">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_number" id="=x!cS/O($=n)2*HNzKvr">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="variables_get" id="#wJmxZNTrtkVj]Y(gd|$">
+        <field name="VAR" id="PF,._m@rmtZhp09v.y3d">quotient</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defnoreturn" id="fE/-kd_Iig3qn#pF.5i7" x="-1438" y="-788">
+    <field name="NAME">setup_wifi</field>
+    <comment pinned="false" h="80" w="160">Descreva esta função...</comment>
+    <statement name="STACK">
+      <block type="wifi_client_connect" id=";5*3F?K%OFZ33BD9!M/P">
+        <field name="NAME">conectar na rede wifi</field>
+        <field name="WIFI_CLIENT_NET_NAME">nome da rede</field>
+        <field name="WIFI_CLIENT_NET_KEY">senha/chave</field>
+        <value name="wifi_client_essid">
+          <shadow type="text" id="N[;nEz*OKOxY?_no-5o_">
+            <field name="TEXT">MinhaRede</field>
+          </shadow>
+        </value>
+        <value name="wifi_client_key">
+          <shadow type="text" id="k?I/p]wEifecQ~6/hgaC">
+            <field name="TEXT">ygpa2508</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>
